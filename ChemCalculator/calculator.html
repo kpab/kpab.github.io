@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="main">ChemCalculator</title>
+    <div id="container">
+        <span></span>
+        <span></span>
+        <span></span>
+        <p>LOADING</p>
+    </div>
+    
+   
+    <script>
+        /*元素記号*/
+        var elements = {
+            1: 'H', 2: 'He', 3: 'Li', 4: 'Be', 5: 'B', 6: 'C', 7: 'N', 8: 'O', 9: 'F', 10: 'Ne', 11: 'Na', 12: 'Mg', 13: 'Al', 14: 'Si', 15: 'P', 16:'S', 17: 'Cl', 18: 'Ar', 19: 'K', 20: 'Ca', 21: 'Sc', 22: 'Ti', 23: 'V', 24: 'Cr', 25: 'Mn', 26: 'Fe', 27: 'Co', 28: 'Ni', 29: 'Cu', 30: 'Zn', 31: 'Ga', 32: 'Ge', 33: 'As', 34: 'Se', 35: 'Br', 36: 'Kr', 37: 'Rb', 38: 'Sr', 39: 'Y', 40: 'Zr', 41: 'Nb', 42: 'Mo', 43: 'Tc', 44: 'Ru', 45: 'Rh', 46: 'Pd'
+            , 47: 'Ag', 48: 'Cd', 49: 'In', 50: 'Sn', 51: 'Sb', 52: 'Te', 53: 'I', 54: 'Xe', 55: 'Cs', 56: 'Ba', 57: 'La', 58: 'Ce', 59: 'Pr', 60: 'Nd', 61: 'Pm', 62: 'Sm', 63: 'Eu', 64: 'Gd', 65: 'Tb', 66: 'Dy', 67: 'Ho', 68: 'Er', 69: 'Tm', 70: 'Yb', 71: 'Lu', 72: 'Hf', 73: 'Ta', 74: 'W', 75: 'Re', 76: 'Os', 77: 'Ir', 78: 'Pt', 79: 'Au', 80: 'Hg', 81: 'Tl', 82: 'Pb', 83: 'Bi', 84: 'Po', 85: 'At', 86: 'Rn', 87: 'Fr', 88: 'Ra', 89: 'Ac', 90: 'Th', 91: 'Pa', 
+            92: 'U', 93: 'Np', 94: 'Pu', 95: 'Am', 96: 'Cm', 97: 'Bk', 98: 'Cf', 99: 'Es', 100: 'Fm', 101: 'Md', 102: 'No', 103: 'Lr', 104: 'Rf', 105: 'Db', 106: 'Sg', 107: 'Bh', 108: 'Hs', 109: 'Mt', 110: 'Ds', 111: 'Rg', 112: 'Cn', 113: 'Nh'/*, 114: 'Fl', 115: 'Mc', 116: 'Lv', 117: 'Ts', 118: 'Og', 119: 'Uue', 120: 'Ubn', 121: 'Ubu', 122: 'Ubb', 123: 'Ubt', 124:'Ubq', 125: 'Ubp', 126: 'Ubh', 127: 'Ubs', 128: 'Ubo', 129: 'Ube', 130: 'Utn', 131: 'Utu', 132: 'Utb',
+            133: 'Utt', 134: 'Utq', 135: 'Utp', 136: 'Uth', 137: 'Uts', 138: 'Uto', 139: 'Ute', 140: 'Uqn', 141: 'Uqu', 142: 'Uqb', 143: 'Uqt', 144: 'Uqq', 145: 'Uqp', 146: 'Uqh', 147: 'Uqs', 148: 'Uqo', 149: 'Uqe', 150: 'Upn', 151: 'Upu', 152: 'Upb', 153: 'Upt', 154: 'Upq', 155: 'Upp', 156: 'Uph', 157: 'Ups', 158: 'Upo', 159: 'Upe', 160: 'Uhn', 161: 'Uhu', 162: 'Uhb', 163: 'Uht', 164: 'Uhq', 165: 'Uhp', 166: 'Uhh', 167: 'Uhs', 168: 'Uho', 169: 'Uhe', 170: 'Usn', 
+            171: 'Usu', 172: 'Usb', 173: 'Ust'*/
+        }
+        var col = 0;
+        var mode = 3;
+    
+        function get_calc(btn){
+        if(btn.value == "="){
+            console.log(col);
+            console.log(elements[col]); 
+            document.calculator.display.value = elements[col];
+            /*result = eval(document.calculator.display.name);
+            document.calculator.display.value = elements[result];*/
+        }else if(btn.value == "AC"){
+            document.calculator.display.value = "";
+            col = 0;
+            mode = 3;
+        }else{
+            if(btn.value == "x"){
+                mode = 1;
+                /*btn.value = "*";*/
+            }else if(btn.value == "÷"){
+                mode = 2;
+            }else if(btn.value == "+"){
+                mode = 3;
+            }else if(btn.value == "-"){
+                mode = 4;
+            }else{
+                    if(mode == 1){
+                    col *= Number(btn.name);
+                }else if(mode == 2){
+                    col /= Number(btn.name);
+                }else if(mode == 3){
+                    col += Number(btn.name);
+                }else if(mode == 4){
+                    col -= Number(btn.name);
+                }
+                console.log(col);
+            }
+            document.calculator.display.value += btn.value;
+            console.log(mode);
+            }
+        }
+
+            // ページのロードが完了したら処理を実行
+        window.onload = function () {
+        // ローディングアニメーションを表示
+        var container = document.getElementById("container");
+        container.style.display = "block";
+
+        // ロード中に表示しない要素を取得して非表示にする
+        var elementsToHide = document.querySelectorAll(".calculator, .main");
+        for (var i = 0; i < elementsToHide.length; i++) {
+            elementsToHide[i].style.display = "none";
+        }
+        
+
+        // 3秒後にローディングアニメーションを非表示にする
+        setTimeout(function () {
+            container.style.display = "none";
+
+            // ロード完了後に要素を表示する
+            for (var i = 0; i < elementsToHide.length; i++) {
+            elementsToHide[i].style.display = "block";
+            }
+        }, 4000); // 4秒後に非表示にする
+        };
+
+    
+    </script>
+</head>
+<body>
+    <h1 class="main">Chem Calculator</h1>
+    <h3 class="main">It can be calculated by atomic number and output the symbol of the element corresponding to the value.</h3>
+    <h4 class="main">Supports up to 113.nihonium</h4>
+    <form name="calculator" class="calculator">
+        <table>
+            <!--液晶部分-->
+            <tr>
+                <td colspan="4">
+                    <input type="text" class="display" name="display" value="" disabled>  
+                </td>
+            </tr>
+
+            <!--上から1段目(7~9,/)-->
+            <tr>
+                <td><input type="button" value="N" name="7" onclick="get_calc(this)"></td>
+                <td><input type="button" value="O" name="8" onclick="get_calc(this)"></td>
+                <td><input type="button" value="F" name="9" onclick="get_calc(this)"></td>
+                <td><input type="button" value="÷" class="operator" name="div_btn" onclick="get_calc(this)"></td>
+            </tr>
+
+            <!--上から2段目(4~6,x)-->
+            <tr>
+                <td><input type="button" value="Be" name="4" onclick="get_calc(this)"></td>
+                <td><input type="button" value="B" name="5" onclick="get_calc(this)"></td>
+                <td><input type="button" value="C" name="6" onclick="get_calc(this)"></td>
+                <td><input type="button" value="x" class="operator" name="multi_btn" onclick="get_calc(this)"></td>
+            </tr>
+
+            <!--上から3段目(1~3,-)-->
+            <tr>
+                <td><input type="button" value="H" name="1" onclick="get_calc(this)"></td>
+                <td><input type="button" value="He" name="2" onclick="get_calc(this)"></td>
+                <td><input type="button" value="Li" name="3" onclick="get_calc(this)"></td>
+                <td><input type="button" value="-" name="-" class="operator" onclick="get_calc(this)"></td>
+            </tr>
+
+            <!--上から4段目(0,C,=,+)-->
+            <tr>
+                <td><input type="button" value="0" name="0" onclick="get_calc(this)"></td>
+                <td><input type="button" value="AC" class="clear" onclick="get_calc(this)"></td>
+                <td><input type="button" value="=" name="=" class="equal" onclick="get_calc(this)"></td>
+                <td><input type="button" value="+" name="+" class="operator" name="div_btn" onclick="get_calc(this)"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+<style>
+    /*ページ装飾*/
+    h1 {
+        position: relative;
+        color: #0c59e9;
+        font-size: 20px;
+        padding: 10px 0;
+        text-align: center;
+        margin: 1.5em 0;
+    }
+    h1:before {
+        content: "";  
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        width: 150px;
+        height: 58px;
+        border-radius: 50%;
+        border: 5px solid #0592e9;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    h3{
+        margin: auto;
+    }
+
+    /*電卓位置*/
+    .calculator{
+        width: fit-content;
+        margin: auto;
+    }
+
+    /*テーブルの装飾*/
+    table{
+        /*size*/
+        width: 300px;
+        height: 400px;
+        /*影の追加*/
+        border: solid 1px #dcdcdca4;
+        border-right: solid 4px #dcdcdca4;
+        border-bottom: solid 4px #dcdcdca4;
+        border-radius: 10px;
+        /*インライン要素を中央に配置*/
+        text-align: center;
+        /*余白調整*/
+        padding: 8px;
+        margin: 20px;
+    }
+
+    input{
+        /*ボタンのサイズ*/
+        width: 70px; 
+        height: 70px;
+        /*ボタンの文字サイズ*/  
+        font-size: x-large;
+        /*数字部分の背景色*/
+        background-color: #dcdcdca4;
+        /*ボタンの詳細設定*/
+        border: none;
+        border-radius: 20px;
+        /*クリック時の黒枠を消す*/
+        outline: none;
+    }
+
+    /*ディスプレイの詳細設定*/
+    .display{
+        width: 250px;
+        text-align: right;/*文字を右詰めに*/
+        /*見た目の詳細設定*/
+        background: #ffffff;
+        border-top: solid #dcdcdca4 5px;
+        border-bottom: solid #dcdcdca4 5px;
+        border-right: solid #b6b6b6 6px;
+        border-left: solid #b6b6b6 6px;
+        border-radius: 5px;
+    }
+    /*演算子の背景色を上書きで設定*/
+    .operator{
+        background-color: #87cefa;
+    }
+    /*イコールの背景色設定*/
+    .equal{
+        background-color: #b6b6b6;
+    }
+    .clear{
+        color: #339cdd;
+    }
+
+    /*カーソルを上に乗せた時に色を濃くする*/
+    input:hover{
+        background: #747373b9;
+    }
+    .display:hover{
+        background: #ffffff;/*ディスプレイ部分は無効化*/
+    }
+    .operator:hover{
+        background: #339cdd;
+    }
+
+    /*クリック時に色を濃くする*/
+    input:active{
+        background: #5a5a5a;
+    }
+    .operator:active{
+        background: #2c80b4;
+    }
+
+    #container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -10px;
+  text-align: center;
+  font-family: Arial;
+  font-weight: bold;
+}
+#container span{
+  display: block;
+  background: #000;
+  width: 100px;
+  height: 5px;
+  margin-top: 5px;
+  animation: load 2s infinite;
+  border-radius: 5px;
+}
+
+#container span:nth-child(2){animation-delay: 100ms;}
+#container span:nth-child(3){animation-delay: 200ms;}
+
+@keyframes load{
+  50%{
+    width: 5px;
+    margin-right: 95px;
+    opacity: .1;
+  }
+}
+</style>
+

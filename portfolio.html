@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>作品一覧</title>
+</head>
+<body>
+  <header>
+    <h1>作品一覧</h1>
+    <div class="menu">
+      <a href="index.html">トップ</a>
+    </div>
+  </header>
+    
+  <div class="portfolio">
+        <!-- ローディングオーバーレイ -->
+    <div class="loading-overlay">
+        <div class="loading-circle"></div>
+        <div class="loading-text">読み込み中...</div>
+    </div>
+
+    <!-- カテゴリ選択バー -->
+    <div class="category-bar">
+        <button class="category-button" data-category="all">全てのカテゴリ</button>
+        <button class="category-button" data-category="category1">Python</button>
+        <button class="category-button" data-category="category2">Blender</button>
+        <button class="category-button" data-category="category3">その他</button>
+    </div>
+
+    <h2>作品一覧</h2>
+    <div class="portfolio-item category1" >
+      <a href="https://petnaming.streamlit.app/" target="_blank">[Python] ペットネーミング
+        <div class="portfolio-detail"><p>[概要]ペットの名前の候補を提案するWebアプリ<br>センスが問われるペットの名前。選択したペットの特徴に適したペットの名前を10つ提案してくれるツールを作りました。<br>近年話題のLGBTQ問題に配慮し、性別を答えなくても命名できるようにしました。</p></div>
+      </a>
+    </div>
+    <div class="portfolio-item category1">
+      <a href="https://nicknaming.streamlit.app/" target="_blank">[Python] あだ名メーカー
+        <div class="portfolio-detail"><p>[概要]あだ名を提案するWebアプリ<br>名前や趣味、好きなもの、イメージからあだ名の候補が出力されます。</p></div>
+      </a>
+    <div class="portfolio-item category1">
+      <a href="https://serchunlimiteddrink.streamlit.app/" target="_blank">[Python] 大学生のための居酒屋検索アプリ
+        <div class="portfolio-detail"><p>[概要]飲み放題のみが検索されるグルメ検索サイト<br>大学生が居酒屋を選ぶ際に重視する要素を考えた構成にしました。ホットペッパーのAPIを使いました。</p></div>
+      </a>
+    </div>
+    <div class="portfolio-item category1">
+      <a href="https://pablender.streamlit.app/" target="_blank">[Python] Blender動画検索ツール
+        <div class="portfolio-detail"><p>[概要]Blenderの動画が検索できるWebアプリ<br>難易度やカテゴリ、解説の有無等でチュートリアルを検索できます。<br>敷居の高いBlenderを、初心者でも始めやすいようにするために作りました。<br>提案される動画はすべて自分で視聴した上で評価しました。</p></div>
+      </a>
+    </div>
+    <div class="portfolio-item category1">
+      <a href="https://translation.streamlit.app/" target="_blank">[Python] DNA配列変換ツール
+        <div class="portfolio-detail"><p>鋳型DNAを入力すると、対応するmRNA、開始コドン、終始コドン、コドン数が出力されます<br></p></div>
+      </a>
+    </div>
+    </div>
+    <div class="portfolio-item category2">
+      <a href="https://sketchfab.com/kpablow" target="_blank">[Blender] Sketchfab
+        <div class="portfolio-detail"><p>Blenderで作ったものの一部を公開しました。<br></p></div>
+      </a>
+    </div>
+    <div class="portfolio-item category3">
+      <a href="https://myresume.web.fc2.com/ChemCalculator/calculator.html" target="_blank">[JS] Chem Calculator
+        <div class="portfolio-detail"><p>[概要]原子番号で計算する電卓<br>入力された元素記号を原子番号で計算し、計算結果に対応した元素記号が出力されます。<br>ニホニウムまで対応済です</p></div>
+      </a>
+    </div>
+    <!-- 他の作品も同様に追加 -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // portfolio.html からの遷移でなければローディングサークルを非表示にする
+          if (!window.location.href.includes("index.html")) {
+            setTimeout(function () {
+              document.querySelector(".loading-overlay").style.display = "none";
+            }, 1500); // 1.5秒待つ
+          }
+        });
+
+         // カテゴリボタンのクリックイベントを設定
+        const categoryButtons = document.querySelectorAll('.category-button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        portfolioItems.forEach(item => {
+          if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+
+    </script>
+
+</body>
+</html>
